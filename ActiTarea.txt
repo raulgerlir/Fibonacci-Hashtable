@@ -1,1 +1,15 @@
-asfzg
+Actividad 1. Ordenes de ejecución / Codigo con Memoria. 
+Cual es el orden del numero de llamadas recursivas que se hace a la funcion "fibonacci", explicando claramente como se llega al valor y ademas mencionar cual es la posicion mas grande que es posible calcular correctamente con estos codigos: Fibonacci_Recursivo.py Y fibonacci_MemDic1.py 
+Actividad 2. Fibonacci "hacia adelante". Replica los codigos fibonacci_haciaAdelnate1.py Y fibonacci_haciaAdelanteGenerator1.py, y contesta lo siguiente: 
+I) Cual es la maxima posicion (numero) que pueden calcular.
+II) El uso del Generator/ yield repercute en un mejor desempeño del codigo? 
+III) Que ventaja presentan estos codigos con respecto al que usa memoria? 
+IV) Hay alguna razon que hicieran preferible usar el esquema con memoria? 
+V) Sin cambiar la esencia de estos codigos, has una mejora en ellos y menciona cuales fueron.
+Actividad 3. Clase Hastable en Java En python usamos la estructura de datos "Dict" (Diccionario) para mantener la memoria. Java tiene su estructura de datos analoga que es la clase Hastable Para que veas su manejo muy basico, implementa el codigo MainMiFiboHash.java (Java 25) 
+Actividad 4. Mejorando el Fibonacci en Java Usando los codigos FibonacciThreads.java y FibonacciThreadsBigInteger.java, responde lo siguiente: 
+I) Cual es el maximo valor que pueden representar los tipos: int, long y la clase BigInteger en java. 
+II) Para que sirve Thread? 
+III) Por que aunque se utilizo BigInteger en el segundo codigo, no se pudo calcular mas alla de la posicion 50 en ambos casos? 
+IV) Usando la clase Hashtable, modifica los codigos de tal manera que generes el analogo de codigo con memoria que se hizo en Python. 
+V) Cual es el maximo valor (posicion) que puede evaluar cada uno de los codigos ya modificados?
