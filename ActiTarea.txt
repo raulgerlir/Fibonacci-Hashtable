@@ -1,3 +1,4 @@
+*** Vi adecuado en hacer la tarea en un archivo txt por la misma razon del estar trabajando con codigos, si requiere que lo pase a cuaderno lo haré ***
 *** Para los codigos, se utilizop IntelliJ para la ejecucion y modificacion de los mismos codigos ***
 | Actividad 1. Ordenes de ejecución / Codigo con Memoria. 
 Cual es el orden del numero de llamadas recursivas que se hace a la funcion "fibonacci", explicando claramente como se llega al valor y ademas mencionar cual es la posicion mas grande que es posible calcular correctamente con estos codigos: Fibonacci_Recursivo.py Y fibonacci_MemDic1.py 
