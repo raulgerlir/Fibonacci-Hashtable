@@ -1,15 +1,148 @@
-Actividad 1. Ordenes de ejecución / Codigo con Memoria. 
+*** Para los codigos, se utilizop IntelliJ para la ejecucion y modificacion de los mismos codigos ***
+| Actividad 1. Ordenes de ejecución / Codigo con Memoria. 
 Cual es el orden del numero de llamadas recursivas que se hace a la funcion "fibonacci", explicando claramente como se llega al valor y ademas mencionar cual es la posicion mas grande que es posible calcular correctamente con estos codigos: Fibonacci_Recursivo.py Y fibonacci_MemDic1.py 
-Actividad 2. Fibonacci "hacia adelante". Replica los codigos fibonacci_haciaAdelnate1.py Y fibonacci_haciaAdelanteGenerator1.py, y contesta lo siguiente: 
+
+Sobre FibRecursivo: Cada llamada nueva que se hace a FibRec genera 2 nuevas llamadas, fibRec(n-1) y fibRec(n-2) lo cual nos implica que crece exponencialmente donde usa una formula 2^n, un ejemplo seria que si se hace una llamada cuando n = 5, se usara fib(5) como referencia, y se buscaran fib(4) y fib(3), lo mismo con estos 2 nuevos fibs creados, haciendo fib(3), fib(2) y fib(2), fib(1) respectivamente, esto sigue hasta llegar a fib(0), donde entonces se ejecuta la suma para conseguir el valor de fib(5), el cual en este caso seria 3, para el limite de llamadas, este empieza a deteriorarse cuando n tiene un valor de 40+, donde puede llegar a tardar minutos creando todas las llamadas, o simplemente el codigo colapse por un error de recursión.
+Sobre fibMemDic: En este codigo, cada llamada se almacena en el diccionario sucFib, entonces es suficiente con correr el codigo una vez para "cargarlo" y entonces poder conseguir los datos sin tener que hacer llamadas extras (ya existen los datos en el diccionario), por lo tanto, el numero de llamadas sera lineal, en el sentido de que si se pide el valor de fibMem(5) ira poco a poco hasta llegar a fibMem(0) y por ende buscar los datos en el diccionario para entonces dar el resultado final, para el limite de llamadas, este codigo ya no tiene una saturacion masiva al llamar a las funciones, entonces el limite solamente es el limite de recursion de Python, el cual equivale a 1000 llamadas hasta que deje de funcionar.
+
+| Actividad 2. Fibonacci "hacia adelante". Replica los codigos fibonacci_haciaAdelnate1.py Y fibonacci_haciaAdelanteGenerator1.py, y contesta lo siguiente: 
 I) Cual es la maxima posicion (numero) que pueden calcular.
+En el caso de los 2 codigos, como ambos usan iteracion en vez de recursion, no existe un limite de pila, el unico limite es el tamaño del "int" de Python, lo cual equivale como un BigInteger en Java, asi que los 2 pueden calcular muchisimas posibilidades, solo que mientras el numero crece, el codigo se vuelve mas lento por el tamaño de los numeros.
 II) El uso del Generator/ yield repercute en un mejor desempeño del codigo? 
+Depende, por una parte, la memoria se vuelve mejor ya que el generador produce un valor a la vez, por lo cual el codigo usa menos memoria, mas sin embargo, por la parte de la velocidad, la iteracion tarda lo mismo, lo unico es que optimiza el consumo de memoria, asi que mientras la memoria se vuelve mejor, la velocidad del mismo codigo no mejora en mucho.
 III) Que ventaja presentan estos codigos con respecto al que usa memoria? 
+Para el codigo "Adelnate", la estructura es iterativa (se repite una x cantidad de veces), este crece de una forma lineal lo cual optimiza la manera en el que se usa, la memoria es constante, osea que usa un espacio determinado para el codigo, el limite del codigo es relativamente alto y la velocidad del mismo es mucho mas rapido
+Para el codigo "Generator", la estructura es recursiva (se llama a si mismo para resolver el problema), el codigo, como el "Adelnate" es lineal, optimiza la manera en la que se usa, la memoria de este codigo es lineal (implementa un diccionario para almacenar informacion), tiene un limite de recursion al implementar el codigo y sobre la velocidad, es similar a la de "Adelnate" mas no es tan veloz
 IV) Hay alguna razon que hicieran preferible usar el esquema con memoria? 
+Si existe una razon, la cual es que cuando se necesitan reutilizar valores anteriores en diferentes momentos y tambien, cuando se calcula Fibonacci para n repetidos, la memoria logra guardarlos y se evita el problema de recalcularlos
 V) Sin cambiar la esencia de estos codigos, has una mejora en ellos y menciona cuales fueron.
-Actividad 3. Clase Hastable en Java En python usamos la estructura de datos "Dict" (Diccionario) para mantener la memoria. Java tiene su estructura de datos analoga que es la clase Hastable Para que veas su manejo muy basico, implementa el codigo MainMiFiboHash.java (Java 25) 
-Actividad 4. Mejorando el Fibonacci en Java Usando los codigos FibonacciThreads.java y FibonacciThreadsBigInteger.java, responde lo siguiente: 
+V.I) Para el codigo "fibonacci_haciaAdelnate.py":
+def fibAdel(n: int) -> int:
+    if n < 0:
+        raise ValueError("El indice no puede ser negativo")
+    elif n == 0:
+        return 0
+    elif n == 1:
+        return 1
+
+    penult, ult = 0, 1
+    for _ in range(2, n + 1):
+        penult, ult = ult, penult + ult
+    return ult
+
+V.II) Para el codigo "fibonacci_haciaAdelanteGenerator1.py":
+def fibGen(n: int):
+    if n < 0:
+        raise ValueError("El indice no puede ser negativo")
+    a, b = 0, 1
+    for _ in range(n + 1):
+        yield a
+        a, b = b, a + b
+
+| Actividad 3. Clase Hastable en Java. En python usamos la estructura de datos "Dict" (Diccionario) para mantener la memoria. Java tiene su estructura de datos analoga que es la clase Hastable. 
+Para que veas su manejo muy basico, implementa el codigo MainMiFiboHash.java (Java 25) 
+Se ejecuto el programa donde se observa la clase Hashtable<k, v>, se logro ver que se inserto, se recorrio y modifico valores dentro de la misma tabla, se uso IntelliJ para correrlo y esto fue el mensaje de salida:
+Uso de la clase Hashtable<k, v>
+El valor de fibonacci en la posición 2 es 1 
+El valor de fibonacci en la posición 1 es 1 
+El valor de fibonacci en la posición 0 es 0 
+Key: 0, Value: 0
+Key: 1, Value: 1
+Key: 2, Value: 1
+Soy fibonacci + 100
+Key: 0, Value: 100
+Key: 1, Value: 101
+Key: 2, Value: 101
+
+| Actividad 4. Mejorando el Fibonacci en Java Usando los codigos FibonacciThreads.java y FibonacciThreadsBigInteger.java, responde lo siguiente: 
 I) Cual es el maximo valor que pueden representar los tipos: int, long y la clase BigInteger en java. 
+Para int: El rango es -2147483648 a 2147483647, siendo equivalente a 32 bits
+Para long: El rango es –9223372036854775808 a 9223372036854775807, siendo equivalente a 64 bits
+Para BigInteger: El rango depende totalmente de la memoria RAM del equipo que se use.
+
 II) Para que sirve Thread? 
+Un hilo, o en este caso Thread, permite ejecutar tareas en segundo plano para aprovechar los multiples nucleos del CPU, en el caso de Fib, se crean 10 hilos que calculan diferentes valores de Fib simultaneamente.
+
 III) Por que aunque se utilizo BigInteger en el segundo codigo, no se pudo calcular mas alla de la posicion 50 en ambos casos? 
+El problema es el cuello de botella, ya que no esta en el tipo de dato si no que en forma recursiva sin memoria, esto causa que el tiempo de ejecucion de BigInteger aumente exponencialmente y se detiene cuando n = 50
+
 IV) Usando la clase Hashtable, modifica los codigos de tal manera que generes el analogo de codigo con memoria que se hizo en Python. 
+IV.I) Para el codigo FibonacciThreads.java
+import java.util.Hashtable;
+
+public class FibThreadHash implements Runnable {
+    private static final Hashtable<Integer, Long> mem = new Hashtable<>();
+    private final int num;
+    static {
+        mem.put(0, 0L);
+        mem.put(1, 1L);
+    }
+
+    public FibThreadHash(int n) {
+        this.num = n;
+    }
+
+    @Override
+    public void run() {
+        long result = fibonacci(num);
+        System.out.println("Thread #" + num + " → Fibonacci(" + num + ") = " + result);
+    }
+
+    private static long fibonacci(int f) {
+        if (mem.containsKey(f)) return mem.get(f);
+        long val = fibonacci(f - 1) + fibonacci(f - 2);
+        mem.put(f, val);
+        return val;
+    }
+
+    public static void main(String[] args) {
+        Thread[] threads = new Thread[20];
+
+        for (int i = 0; i < threads.length; i++) {
+            threads[i] = new Thread(new FibThreadHash(i));
+        }
+        for (Thread t : threads) t.start();
+    }
+}
+IV.II) Para el codigo FibonacciThreadsBigInteger.java
+import java.math.BigInteger;
+import java.util.Hashtable;
+
+public class FibThreadBigIntHash implements Runnable {
+    private static final Hashtable<Integer, BigInteger> mem = new Hashtable<>();
+    private final int num;
+    static {
+        mem.put(0, BigInteger.ZERO);
+        mem.put(1, BigInteger.ONE);
+    }
+
+    public FibThreadBigIntHash(int n) {
+        this.num = n;
+    }
+
+    @Override
+    public void run() {
+        BigInteger result = fibonacci(num);
+        System.out.println("Thread #" + num + " → Fibonacci(" + num + ") = " + result);
+    }
+
+    private static BigInteger fibonacci(int f) {
+        if (mem.containsKey(f)) return mem.get(f);
+        BigInteger val = fibonacci(f - 1).add(fibonacci(f - 2));
+        mem.put(f, val);
+        return val;
+    }
+
+    public static void main(String[] args) {
+        Thread[] threads = new Thread[20];
+
+        for (int i = 0; i < threads.length; i++) {
+            threads[i] = new Thread(new FibThreadBigIntHash(i));
+        }
+        for (Thread t : threads) t.start();
+    }
+}
+
 V) Cual es el maximo valor (posicion) que puede evaluar cada uno de los codigos ya modificados?
+V.I) En el caso de FibThreadHash.java, este implementa hashtable, usando int para los datos, este tiene un limite de numero cuando n = 85+, la cosa es que la tabla hash evita recomputar valores, acelerando el proceso del codigo, pero la limitacion sigue siendo el caso de "int", causando errores despues de ciertos numeros en el codigo.
+V.II) En el caso de FibThreadBigIntHash.java, este implementa hashtable, usando BigInteger para los datos, sobre el limite, no existe como tal un limite practico mas que el tiempo y la memoria del sistema, ya que hashtable permite que cada valor se calcule solo una sola vez, puede llegar a miles de numeros sin causar un error en el codigo.
